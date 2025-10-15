@@ -1,0 +1,1 @@
+C:/Users/zeyad/Downloads/terraform-gcp-infra/assets/terraform.tfvars

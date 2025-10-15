@@ -1,13 +1,12 @@
-terraform {
-  required_providers {
-    google = {
-      credentials = file(var.gcp_credentials_file)
+provider   "google"  {
+    credentials = file("C:/Users/zeyad/Downloads/terraform-gcp-infra/pseudo-credential.txt")
       project     = var.project_id
       region      = var.region
     }
 
-  }
-}
+  
+
+
 
 
 variable "gcp_credentials_file" {
@@ -19,30 +18,21 @@ locals {
 }
 
 
-variable "profile" {
-  description = "This is the AWS profile name as set in the shared credentials file"
-  type        = string
-}
+
 
 variable "project_id" {
   description = "This is the GCP project ID as set in the shared credentials file"
   type        = string
 }
 
-variable "region" {
-  description = "The AWS region"
+
+variable "bucket_name" {
+  description = "The name of the GCP bucket"
+  default     = "terraform-state"
   type        = string
 }
 
-variable "bucket" {
-  description = "The name of the S3 bucket"
-  type        = string
-}
 
-variable "domain" {
-  description = "The DNS domain name"
-  type        = string
-}
 
 variable "namespace" {
   description = "The namespace (e.g. `finx`)"
@@ -51,6 +41,11 @@ variable "namespace" {
 
 variable "stage" {
   description = "The stage (e.g. `dev`, `stage`, `prod`, `test`)"
+  type        = string
+}
+
+variable "region" {
+  description = "The GCP region (e.g. `us-central1`)"
   type        = string
 }
 
@@ -78,7 +73,4 @@ variable "tags" {
   description = "Resource tags (e.g. `map('BusinessUnit','XYZ')`"
 }
 
-variable "vault_addr" {
-  description = "Address of the Vault server expressed as a URL"
-  type        = string
-}
+
